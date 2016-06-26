@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoList">
+<head>
+  <meta charset="UTF-8">
+  <title>提醒事项</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body ng-controller="todoCtr">
+  <div class="Reminders">
+    <input id="Reminders-input-checkbox" type="checkbox">
+    <div class="icloud">
+      <div class="logo"></div>
+      <div class="Reminders-input">
+        <label for="Reminders-input-checkbox">提醒事项</label>
+      </div>
+      <div class="Reminders-add" ng-click="addList()"></div>
+    </div>
+    <div class="scheduled">
+      <span class="scheduled-icon"></span>
+      <div class="scheduled-text">已计划</div>
+    </div>
+    <div class="matter-list">
+      <ul class="matter-list-ul">
+        <li ng-click="currentList(i)" ng-class="{current:v==current}" class="{{v.color}}" ng-repeat="(i,v) in todoLists">
+          <span class="list-icon"></span>
+          <div class="list-text">
+            <input class="list-content" ng-model="v.name" ng-change="saveDate()">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="matter-details" ng-show="todoLists.length">
+    <div class="search-remind">
+      <div class="search-all">
+        搜索所有提醒
+      </div>
+      <input type="text" placeholder="搜索所有提醒" ng-model="ss">
+      <div class="search-other">
+        <div class="search-user">wang</div>
+        <div class="xian"></div>
+        <div class="search-help"></div>
+      </div>
+    </div>
+    <div class="matter-content {{current.color}}" ng-show="current">
+      <div class="matter-title">
+        <div class="matter-title-h3">{{current.name}}</div>
+        <div class="xuanxiang">
+          <a href="javascript:;" ng-click="popBox=!popBox" ng-init="popBox=false">选项</a>
+          <div class="pop-up-box" ng-show="popBox">
+            <input type="text" ng-model="current.name" ng-change="saveDate()">
+            <div class="list-color">
+              <div class="list-color-title">列表颜色</div>
+               <ul class="colors">
+                 <li ng-class="{active:current.color===v}" ng-click="changeColor(current,i)"ng-repeat="(i,v) in color"><span></span></li>
+               </ul>
+            </div>
+            <div class="operation">
+              <div class="del"></div>
+              <div class="cancle"></div>
+              <div class="finish"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="Completed done">
+        <input type="checkbox"id="toggleDone">
+        <div class="title">
+
+          <div class="title-num">
+            <label for="toggleDone" class="toggleDo"></label>
+            <a href="javascript:;">
+              已完成：<span>{{(current.item|filter:{state:true}).length}}</span> 项
+            </a>
+          </div>
+          <div class="clear-Completed" ng-click="clearDone(current)">
+            <a href="javascript:;">清除已完成事项</a>
+          </div>
+        </div>
+        <div class="Completed-wrapper">
+          <ul class="Completed-lists">
+            <li ng-repeat="v in current.item|filter:{name:ss}" ng-if="v.state">
+              <div class="Completed-list-content">
+                <span class="state" ng-click='cgeState(v)'></span>
+                <input class="Completed-content-title" ng-model="v.name" ng-change="saveDate()">
+                <div class="Details"><a href="javascript:;">详细信息</a></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="to-do-list">
+        <ul class="Completed-lists">
+          <li ng-repeat="v in current.item|filter:{name:ss}" ng-if="!v.state">
+            <div class="Completed-list-content">
+              <span class="state" ng-click="cgeState(v)"></span>
+              <input class="Completed-content-title" ng-model="v.name" ng-change="saveDate()">
+              <div class="Details"><a href="javascript:;">详细信息</a></div>
+            </div>
+          </li>
+          <li class="more" ng-click="addItem(current.item)">
+            <div class="Completed-list-content">
+              <div class="Completed-content-title">新项目...</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
