@@ -1,113 +1,234 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="todoList">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>提醒事项</title>
+  <title></title>
+  <link href="https://cdn.bootcss.com/fullPage.js/2.7.9/jquery.fullPage.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/index.css">
 </head>
-<body ng-controller="todoCtr">
-  <div class="Reminders">
-    <input id="Reminders-input-checkbox" type="checkbox">
-    <div class="icloud">
-      <div class="logo"></div>
-      <div class="Reminders-input">
-        <label for="Reminders-input-checkbox">提醒事项</label>
-      </div>
-      <div class="Reminders-add" ng-click="addList()"></div>
-    </div>
-    <div class="scheduled">
-      <span class="scheduled-icon"></span>
-      <div class="scheduled-text">已计划</div>
-    </div>
-    <div class="matter-list">
-      <ul class="matter-list-ul">
-        <li ng-click="currentList(i)" ng-class="{current:v==current}" class="{{v.color}}" ng-repeat="(i,v) in todoLists">
-          <span class="list-icon"></span>
-          <div class="list-text">
-            <input class="list-content" ng-model="v.name" ng-change="saveDate()">
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="matter-details" ng-show="todoLists.length">
-    <div class="search-remind">
-      <div class="search-all">
-        搜索所有提醒
-      </div>
-      <input type="text" placeholder="搜索所有提醒" ng-model="ss">
-      <div class="search-other">
-        <div class="search-user">wang</div>
-        <div class="xian"></div>
-        <div class="search-help"></div>
-      </div>
-    </div>
-    <div class="matter-content {{current.color}}" ng-show="current">
-      <div class="matter-title">
-        <div class="matter-title-h3">{{current.name}}</div>
-        <div class="xuanxiang">
-          <a href="javascript:;" ng-click="popBox=!popBox" ng-init="popBox=false">选项</a>
-          <div class="pop-up-box" ng-show="popBox">
-            <input type="text" ng-model="current.name" ng-change="saveDate()">
-            <div class="list-color">
-              <div class="list-color-title">列表颜色</div>
-               <ul class="colors">
-                 <li ng-class="{active:current.color===v}" ng-click="changeColor(current,i)"ng-repeat="(i,v) in color"><span></span></li>
-               </ul>
-            </div>
-            <div class="operation">
-              <div class="del"></div>
-              <div class="cancle"></div>
-              <div class="finish"></div>
-            </div>
-          </div>
+<body>
+  <div id="fullpage">
+    <div class="section animat" id="section-1">
+      <div class="textArea">
+        <div class="star-wrapper">
+          <img src="./image/pic_1_bj1.png" alt="" id="SKY-star">
+          <img src="./image/pic_1_bj2.png" alt="" id="MailSmall">
+          <img src="./image/pic_1_bj3.png" alt="" id="MailBig">
         </div>
-      </div>
-      <div class="Completed done">
-        <input type="checkbox"id="toggleDone">
+        <h2 class="subTitle">
+          <p>
+            网易邮箱6.0版——2014年最具创意气质的重量级新邮箱，重生光华，为之瞩目。唯美
+            <br>
+            的视觉设计和视觉化交互，无可替代的独创动态情景皮肤，多项国内创意产品专利技术，
+            <br>
+            成就无与伦比的出众品味，无可比拟的美妙体验。
+          </p>
+        </h2>
+        <div class="modern">
+          <div class="logo"></div>
+        </div>
         <div class="title">
-
-          <div class="title-num">
-            <label for="toggleDone" class="toggleDo"></label>
-            <a href="javascript:;">
-              已完成：<span>{{(current.item|filter:{state:true}).length}}</span> 项
-            </a>
-          </div>
-          <div class="clear-Completed" ng-click="clearDone(current)">
-            <a href="javascript:;">清除已完成事项</a>
-          </div>
-        </div>
-        <div class="Completed-wrapper">
-          <ul class="Completed-lists">
-            <li ng-repeat="v in current.item|filter:{name:ss}" ng-if="v.state">
-              <div class="Completed-list-content">
-                <span class="state" ng-click='cgeState(v)'></span>
-                <input class="Completed-content-title" ng-model="v.name" ng-change="saveDate()">
-                <div class="Details"><a href="javascript:;">详细信息</a></div>
-              </div>
-            </li>
-          </ul>
+          <img src="./image/slogan.png" alt="" id="SKY-slogan2">
         </div>
       </div>
-      <div class="to-do-list">
-        <ul class="Completed-lists">
-          <li ng-repeat="v in current.item|filter:{name:ss}" ng-if="!v.state">
-            <div class="Completed-list-content">
-              <span class="state" ng-click="cgeState(v)"></span>
-              <input class="Completed-content-title" ng-model="v.name" ng-change="saveDate()">
-              <div class="Details"><a href="javascript:;">详细信息</a></div>
-            </div>
-          </li>
-          <li class="more" ng-click="addItem(current.item)">
-            <div class="Completed-list-content">
-              <div class="Completed-content-title">新项目...</div>
-            </div>
-          </li>
-        </ul>
+    </div>
+    <div class="section" id="section-2">
+      <div class="textArea">
+        <div class="topic">[ 央视报道 ]</div>
+        <div class="desc desc-1">
+          2014年4月15日，网易公司在北京发布最新的网易邮箱6.0版，新版拥有多项独创产品和技术，并且和易信无缝连接。6月17日，央视13套《新闻直播间》对其进行了部分介绍
+        </div>
+        <div class="desc desc-2">
+        </div>
+        <div class="modern"></div>
+      </div>
+    </div>
+    <div class="section" id="section-3">
+      <div class="textArea">
+        <div class="topic">[ 视觉·简 ]</div>
+        <div class="desc">
+          秉承网易邮箱经典的清新简洁的设计风格，邮箱 6.0 版带来全新一代的设计理念，更追求极致唯美的视觉设计、传承更多人文和艺术底蕴，华丽蜕变，带来更舒服更爽心悦目的视觉享受。
+        </div>
+        <div class="modern">
+          <div class="title"></div>
+          <div class="pic1"></div>
+          <div class="pic2"></div>
+          <div class="pic3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="section-4">
+      <div class="textArea">
+        <div class="topic">[ 视觉化交互设计 ]</div>
+        <div class="desc">
+          邮箱 6.0 版采用了全新的视觉化交互设计，通过对界面的整体风格设计、重要信息的视觉化处理以及元素本身的视觉传达优化，来实现产品流程设计和交互行为塑造。从视觉的角度出发，让用户无需多想，直接通过感官与产品进行交互。
+        </div>
+        <div class="modern">
+          <div class="title"></div>
+          <div class="pic1"></div>
+          <div class="pic2"></div>
+          <div class="pic3"></div>
+          <div class="pic4"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="section-5">
+      <div class="textArea">
+        <div class="topic">[ 视觉化交互设计 ]</div>
+        <div class="desc">
+          邮箱 6.0 版采用了全新的视觉化交互设计，通过对界面的整体风格设计、重要信息的视觉化处理以及元素本身的视觉传达优化，来实现产品流程设计和交互行为塑造。从视觉的角度出发，让用户无需多想，直接通过感官与产品进行交互。
+        </div>
+        <div class="modern">
+          <div class="title"></div>
+          <div class="pic1"></div>
+          <div class="pic2"></div>
+          <div class="pic3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="section-6">
+      <div class="textArea">
+        <div class="topic">[ 功能·创 ]</div>
+        <div class="desc desc-1">
+          <h4>新语音视频邮件</h4>
+          <p>写信不再枯燥！在线录制和播放声音和视频邮件，比单纯的文字邮件更感性、更方便，更好玩。</p>
+        </div>
+        <div class="desc desc-2">
+          <h4>虚拟场景写信模式</h4>
+          <p>写信可以选择自己喜欢的场景，配合美妙的背景音乐，让写信<br>变得更为有趣和生动。</p>
+        </div>
+        <div class="desc desc-3">
+          <h4>独创智能体检</h4>
+          <p>网易邮箱6.0版帮你关注邮箱安全，提醒你及时清理邮件，打<br>造轻量级邮箱。</p>
+        </div>
+        <div class="desc desc-4">
+          <h4>全新多帐号关联</h4>
+          <p><p>一键关联和切换多个网易邮箱，同时对于重要的邮箱帐号进行<br>密码验证保护。</p></p>
+        </div>
+        <div class="modern">
+          <div class="title"></div>
+          <div class="pic1"></div>
+          <div class="pic2"></div>
+          <div class="pic3"></div>
+          <div class="pic4"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="section-7">
+      <div class="textArea">
+        <div class="topic">[ 待办邮件 ]</div>
+        <div class="desc">
+          <p>独家首创邮件管理方式：待办邮件
+            <br>
+            采用日程的方式第一时间分配和提醒邮件！
+          </p>
+          <p>
+            对于需要后续处理的重要邮件，如果正忙来不及处理和回复，只需设置为待办邮件，在待办时间到期时，邮件会在文件夹置顶提示或采用短信方式提醒。
+          </p>
+          <p>如此高效迅速处理邮件，让邮件处理过程变成更轻松和快捷。</p>
+        </div>
+        <div class="modern">
+          <div class="title"></div>
+          <div class="pic1"></div>
+          <div class="pic2"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="section-8">
+      <div class="textArea">
+        <div class="topic">[ 联系人邮件 ]</div>
+        <div class="desc">
+          <p>
+            邮箱6.0版带来一种极其简便的方式，管理你和联系人的
+            <br>
+            邮件往来，帮助你精准定位到以联系人为维度的邮件列表。
+          </p>
+          <p>
+            同时支持以联系组方式来管理邮件，方便以群或相同关系
+            <br>
+            的群体间的邮件管理，比如：同学组，客户组，公司组等。
+          </p>
+        </div>
+        <div class="modern">
+          <div class="title"></div>
+          <div class="pic1"></div>
+          <div class="pic2"></div>
+          <div class="pic3"></div>
+          <div class="pic4"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="section-9">
+      <div class="textArea">
+        <div class="topic">[ 科技.聚 ]</div>
+        <div class="desc">
+          邮箱6.0版带来“飞”一般的访问体验，速度提升达30%。采用全新base基础库bjs，更加轻量级，性能更加优化，完全兼容国内用户使用的所有浏览器，以及基于"多核"多线程的核心js引擎，性能和访问速度大幅提升。
+        </div>
+        <div class="modern">
+          <div class="title"></div>
+          <div class="pic1"></div>
+          <div class="pic2"></div>
+          <div class="pic3"></div>
+          <div class="pic4"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="section-10">
+      <div class="textArea">
+        <div class="topic">[ 让沟通更有趣 ]</div>
+        <div class="desc desc-1">
+          <div class="bdr"></div>
+          <p>
+            易信扫描二维码即可登录网易
+            <br>
+            邮箱6.0版，“扫一扫”让邮
+            <br>
+            箱登录更方便。
+          </p>
+        </div>
+        <div class="desc desc-2">
+          <p>
+            登录邮箱后，可直接使用Web
+            <br>
+            易信和好友聊天，还可以发图
+            <br>
+            片，让聊天更有趣。
+          </p>
+        </div>
+        <div class="desc desc-3">
+          <div class="bdr"></div>
+          <p>
+            易信和邮箱新邮件同步提醒，
+            <br>
+            在易信可以直接查看和回复
+            <br>
+            邮件，手机收发邮件更快捷。
+          </p>
+        </div>
+        <div class="modern">
+          <div class="title">
+            <div class="yixin"></div>
+          </div>
+          <div class="pic1"></div>
+          <div class="pic2"></div>
+          <div class="pic3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="section-11">
+      <div class="textArea">
+        <div class="modern">
+          <div class="title title-1"></div>
+          <div class="title title-2"></div>
+          <div class="btn"></div>
+          <div class="pic"></div>
+        </div>
       </div>
     </div>
   </div>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="js/index.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-easing/1.3/jquery.easing.min.js"></script>
+  <script src="https://cdn.bootcss.com/fullPage.js/2.7.9/jquery.fullPage.js"></script>
+  <script src="./js/index.js"></script>
 </body>
 </html>
